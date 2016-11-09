@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta charset="utf-8"/>
+    <style type="text/css">
+    table, tr, td, span, a {
+        -webkit-text-size-adjust:none;
+    }
+
+    @media only screen and (max-width: 599px) {
+
+        table[class="slogan-app"] {
+            text-align: center;
+            width: 100%;
+        }
+
+        td[class="logo-left"] {
+            width: 50%;
+            text-align: right;
+        }
+
+        td[class="logo-right"] {
+            width: 50%;
+            text-align: left;
+        }
+
+        td[class="spacer"]{
+            display: none;
+        }
+
+    }
+
+    @media only screen and (max-width: 710px) {
+        .primary-action {
+            font-size: 17px!important;
+            display: inline-block;
+        }
+
+        .secondary-action {
+            display: inline-block;
+            text-align: center;
+        }
+
+    }
+
+    @media only screen and (max-width: 528px) {
+        .primary-action {
+            float: none!important;
+        }
+
+    }
+
+    @media only screen and (max-width: 460px) {
+        div.primary-action {
+            margin-right: 0!important;
+        }
+    }
+
+    {{if .CheckoutDto.Payment}}
+        @media only screen and (max-width: 320px) {
+            table[class="accord-accord-pay"] {
+                padding: 20px 0 !important;
+            }
+        }
+    {{end}}
+    </style>
+</head>
+<body style="padding:0; max-width: 700px; margin: 0 auto;">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td class="logo" align="left" style="padding:10px 0 15px 0">
+            <img alt='{{t9n "MercadoLibre" "" "" "none"}}' border="0"
+                 title='{{t9n "MercadoLibre" "" "" "none"}}' width="132" height="33"
+                 src="{{ .ItemSite}}"/>
+        </td>
+    </tr>
+    <tr>
+        <td width="100%" style="border-top:solid 1px #E8E8E8;display:block"></td>
+    </tr>
+    <tr>
+        <td height="25" style="font-size:1px">&nbsp;</td>
+    </tr>
+</table>

@@ -1,0 +1,49 @@
+{{$unitRef := getUnitReferenceValue .Item}}
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td>
+			<table width="100%" cellspacing="0" cellpadding="0" border="0">
+				<tr valign="top">
+					<td style="width:90px">
+						<span style="border:1px solid #cccccc;display:block;">
+							<!-- <a href="${url.vopPurchases(siteId: vars.itemSite,order: vars.order, item: vars
+							.item)}"> -->
+								<img src="{{ .ItemPicture}}" style="display:block;" width="90" height="90"> <!-- </a>
+								 -->
+						</span>	
+					</td>
+					<td>	
+						<table cellpadding="0" cellspacing="0" border="0">
+						   <tr>
+					   			<td style="font-family:Arial; font-size:14px; color:#666666;padding:0 20px 6px 15px;line-height:1.4;">{{.ItemTitle}}</td>
+					   		</tr>
+						    <tr>
+						    	<td style="font-family:Arial; font-size:12px; color:#999999;padding:0 20px 6px 15px">
+									<!--<g:if test="${item.hasVariation(attributes:vars.variationAttributes) == true}">-->
+										<!--<item:variation attributes="${vars.variationAttributes}" item= "${vars.item}"/>-->
+									<!--</g:if>-->
+									{{t9n "Cantidad" .LocaleString "es_AR" ""}}: {{.Quantity}}
+									{{getFormattedUnitReferenceValue $unitRef}}
+
+								</td>
+						    </tr>
+						    <tr>
+						    	<td style="font-family:Arial; font-size:16px; color:#B22C00;padding:0 20px 0 15px">
+									{{.UnitPrice}}
+									<span style="font-family:Arial; font-size:14px; color:#666666;">
+										{{if $unitRef}}
+											{{getFormattedUnitReferenceValue $unitRef}} <!-- isForPricing="true" -->
+						    			{{else}}
+											{{t9n "c/u" .LocaleString "es_AR" ""}}
+				    					{{end}}
+			    					</span>
+				    			</td>
+						    </tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr><td height="25" style="font-size:1px">&nbsp;</td></tr>
+</table>
