@@ -5,6 +5,7 @@ import(
 	"net/http"
 	"html/template"
 	"github.com/segeschecho/toc_template/template_helpers"
+	"github.com/aymerick/raymond"
 )
 
 // Mock de la estructura usada dentro de los templates.
@@ -20,7 +21,7 @@ var model = template_helpers.Vars_struct{
 }
 
 // funciones para manejar los requests HTTP
-func template_handler(w http.ResponseWriter, r *http.Request) {
+func default_templating_handler(w http.ResponseWriter, r *http.Request) {
 	// Defer funciona como un "finally", aca se usa para manejar runtime errors
 	defer func(){
 		r := recover()
@@ -53,11 +54,35 @@ func template_handler(w http.ResponseWriter, r *http.Request) {
 }
 
 
+func handlebars_templating_handler(w http.ResponseWriter, r *http.Request) {
+	tpl := `
+		<div class="entry">
+  		<h1>{{title}}</h1>
+  		<div class="body">
+    			{{body}}
+  		</div>
+		</div>
+	`
+
+	ctx := map[string]string{
+		"title": "My New Post",
+		"body":  "This is my first post!",
+	}
+
+	result, err := raymond.Render(tpl, ctx)
+	if err != nil {
+		panic("Please fill a bug :)")
+	}
+
+	fmt.Fprintf(w, result)
+}
+
 func main() {
 	fmt.Println("Servicio ejecutando...")
 
 	// Se instancia y se levanta el server
-	http.HandleFunc("/", template_handler)
+	http.HandleFunc("/default", default_templating_handler)
+	http.HandleFunc("/handlebars", handlebars_templating_handler)
 	http.ListenAndServe(":8080", nil)
 
 }
