@@ -4,7 +4,7 @@ import(
 	"fmt"
 	"net/http"
 	"html/template"
-	"github.com/sergio/toc_template/template_helpers"
+	"github.com/segeschecho/toc_template/template_helpers"
 )
 
 // Mock de la estructura usada dentro de los templates.
