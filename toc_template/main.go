@@ -8,6 +8,8 @@ import(
 	"github.com/aymerick/raymond"
 )
 
+// Ejemplo de como se manejan templates usando el framework que viene con Go.
+
 // Mock de la estructura usada dentro de los templates.
 var model = template_helpers.Vars_struct{
 	CheckoutDto: template_helpers.CheckoutDto_struct{Payment: true},
