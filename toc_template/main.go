@@ -55,25 +55,44 @@ func default_templating_handler(w http.ResponseWriter, r *http.Request) {
 
 
 func handlebars_templating_handler(w http.ResponseWriter, r *http.Request) {
-	tpl := `
-		<div class="entry">
-  		<h1>{{title}}</h1>
-  		<div class="body">
-    			{{body}}
-  		</div>
-		</div>
-	`
+	defer func() {
+		r := recover()
+		if r != nil {
+			fmt.Fprintf(w, "Error: ", r)
+		}
+	}()
 
-	ctx := map[string]string{
-		"title": "My New Post",
-		"body":  "This is my first post!",
+	// Estructura a usar dentro de los templates
+	type model_struct struct {
+		Title string
+		Body string
+		List_test []string
 	}
 
-	result, err := raymond.Render(tpl, ctx)
-	if err != nil {
-		panic("Please fill a bug :)")
+
+	// Instanciando la estructura con datos de prueba
+	var model = model_struct{
+		Title: "My New Post",
+		Body:  "This is my first post!",
+		List_test: []string{"1","2","3"},
 	}
 
+	tpl, err := raymond.ParseFile("web_templates/handlebars/test_main.html")
+
+	if err != nil{
+		fmt.Println(err.Error())
+	}
+
+	tpl.RegisterPartialFiles("web_templates/handlebars/test_foo_test.html")
+
+	// Se aplica el modelo a la vista
+	result, err := tpl.Exec(model)
+
+	if err != nil{
+		fmt.Println(err.Error())
+	}
+
+	// Se renderiza en la respuesta http
 	fmt.Fprintf(w, result)
 }
 
