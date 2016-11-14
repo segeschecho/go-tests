@@ -4,7 +4,7 @@ import(
 	"fmt"
 	"net/http"
 	"html/template"
-	"github.com/segeschecho/toc_template/template_helpers"
+	"github.com/segeschecho/go-tests/toc_template/template_helpers"
 	"github.com/aymerick/raymond"
 )
 
